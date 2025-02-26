@@ -627,10 +627,10 @@ class PomodoroApp:
             self.timer_paused = False
             
             # Set initial phase and time
-            if not self.current_phase or self.current_phase == "ready":
-                self.current_phase = "work"
-                self.remaining_time = self.current_technique.work_time * 60
-                self.phase_var.set("Work Time")
+            # Always start with work time when pressing start initially
+            self.current_phase = "work"
+            self.remaining_time = self.current_technique.work_time * 60
+            self.phase_var.set("Work Time")
             
             # Start the timer thread
             self.current_timer = threading.Thread(target=self.run_timer)
